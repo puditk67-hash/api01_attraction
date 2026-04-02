@@ -1,5 +1,8 @@
 INSERT INTO attractions 
-(name, detail, coverimage, latitude, longitude, likes)
+(name, part, description, origin, price, image)
 VALUES
-('Wat Phra Kaew', 'Temple in Bangkok', 'wat.jpg', 13.7515, 100.4923, 10),
-('Grand Palace', 'Famous landmark', 'palace.jpg', 13.7500, 100.4913, 20);
+('Wagyu A5', 'Ribeye', 'Premium beef that melts in your mouth', 'Japan', 2500.00, 'wagyu.jpg'),
+('Angus Beef', 'Sirloin', 'Tender meat with perfect marbling', 'USA', 850.00, 'angus.jpg'),
+('Thai Beef', 'Tenderloin', 'High-quality local beef at a great value', 'Thailand', 450.00, 'thai.jpg'),
+('Australian Beef', 'Striploin', 'High-quality beef from Australia', 'Australia', 950.00, 'aus.jpg'),
+('Kobe Beef', 'Ribeye', 'World-class beef, rich, tender, and flavorful', 'Japan', 3000.00, 'kobe.jpg');
