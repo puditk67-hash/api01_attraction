@@ -6,7 +6,7 @@ const db = require('../db');
 router.get('/', async (req, res, next) => {
   try {
     const [rows] = await db.query('SELECT * FROM attractions');
-    res.json(rows);
+    res.status(200).json(rows);
   } catch (err) {
     next(err);
   }
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res, next) => {
       return res.status(404).json({ message: 'Not found' });
     }
 
-    res.json(rows[0]);
+    res.status(200).json(rows[0]);
   } catch (err) {
     next(err);
   }
@@ -33,11 +33,18 @@ router.get('/:id', async (req, res, next) => {
 // POST
 router.post('/', async (req, res, next) => {
   try {
-    const { name, detail, coverimage, latitude, longitude, likes } = req.body;
+    const {
+      name,
+      detail,
+      coverimage,
+      latitude,
+      longitude,
+      likes
+    } = req.body;
 
     const [result] = await db.query(
       `INSERT INTO attractions 
-      (name, detail, coverimage, latitude, longitude, likes)
+      (name, detail, coverimage, latitude, longitude, likes) 
       VALUES (?, ?, ?, ?, ?, ?)`,
       [name, detail, coverimage, latitude, longitude, likes || 0]
     );
@@ -51,12 +58,19 @@ router.post('/', async (req, res, next) => {
 // PUT
 router.put('/:id', async (req, res, next) => {
   try {
-    const { name, detail, coverimage, latitude, longitude, likes } = req.body;
+    const {
+      name,
+      detail,
+      coverimage,
+      latitude,
+      longitude,
+      likes
+    } = req.body;
 
     const [result] = await db.query(
       `UPDATE attractions 
-       SET name=?, detail=?, coverimage=?, latitude=?, longitude=?, likes=?
-       WHERE id=?`,
+      SET name=?, detail=?, coverimage=?, latitude=?, longitude=?, likes=? 
+      WHERE id=?`,
       [name, detail, coverimage, latitude, longitude, likes, req.params.id]
     );
 
@@ -64,7 +78,7 @@ router.put('/:id', async (req, res, next) => {
       return res.status(404).json({ message: 'Not found' });
     }
 
-    res.json({ message: 'Updated' });
+    res.status(200).json({ message: 'Updated' });
   } catch (err) {
     next(err);
   }
@@ -82,7 +96,7 @@ router.delete('/:id', async (req, res, next) => {
       return res.status(404).json({ message: 'Not found' });
     }
 
-    res.json({ message: 'Deleted' });
+    res.status(200).json({ message: 'Deleted' });
   } catch (err) {
     next(err);
   }

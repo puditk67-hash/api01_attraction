@@ -11,9 +11,9 @@ app.use(express.json());
 
 app.use('/api/attractions', attractionsRoutes);
 
-// error handler (แก้แล้ว)
+// error handler
 app.use((err, req, res, next) => {
-  console.error('ERROR:', err);
+  console.error(err);
   res.status(500).json({ error: err.message });
 });
 
